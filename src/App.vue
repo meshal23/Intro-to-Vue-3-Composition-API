@@ -1,24 +1,43 @@
 <script setup>
-import { ref } from 'vue'
-import socksGreenImage from './assets/images/socks_green.jpeg'
+import { ref } from "vue";
+import socksGreenImage from "./assets/images/socks_green.jpeg";
 
-const product = ref('Socks')
-const image = ref(socksGreenImage)
-const inStock = true
-const details = ref(['50% cotton', '30% wool', '20% polyester'])
+const product = ref("Socks");
+const image = ref(socksGreenImage);
+const inStock = true;
+const details = ref(["50% cotton", "30% wool", "20% polyester"]);
+const variants = ref([
+  { id: 2134, color: "blue" },
+  { id: 3214, color: "red" },
+]);
+const sizes = ref([
+  { id: 1212, size: "small" },
+  { id: 1213, size: "medium" },
+  { id: 1214, size: "large" },
+]);
 </script>
-  
+
 <template>
   <div class="nav-bar"></div>
   <div class="product-display">
     <div class="product-container">
-      <div class="product-image">    
-        <img v-bind:src="image">
+      <div class="product-image">
+        <img v-bind:src="image" />
       </div>
       <div class="product-info">
         <h1>{{ product }}</h1>
         <p v-if="inStock">In Stock</p>
         <p v-else>Out of Stock</p>
+
+        <ul>
+          <li v-for="detail in details">{{ detail }}</li>
+        </ul>
+
+        <div v-for="variant in variants" :key="variant.id">
+          {{ variant.color }}
+        </div>
+
+        <div v-for="size in sizes" :key="size.id">{{ size.size }}</div>
       </div>
     </div>
   </div>
