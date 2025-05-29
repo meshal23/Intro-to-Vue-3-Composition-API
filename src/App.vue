@@ -34,6 +34,11 @@ const updateVariant = (index) => {
   selectedVariant.value = index;
   console.log(index);
 };
+
+const onSale = ref(true);
+const saleProduct = computed(() => {
+  return onSale.value ? `${brand.value + " " + product.value} is on sale` : "";
+});
 </script>
 
 <template>
@@ -59,6 +64,8 @@ const updateVariant = (index) => {
           class="color-circle"
           :style="{ backgroundColor: variant.color }"
         ></div>
+
+        <h1 :style="{ color: red }">{{ saleProduct }}</h1>
         <button
           class="button"
           :class="{ disabledButton: !inStock }"
